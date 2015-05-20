@@ -53,11 +53,8 @@ module Guessr
         self.update(finished: true)
         x = 100 - (self.guess_count * 10)   
         self.player.update(score: self.player.score + x)        
-       binding.pry
-       end
-    # x = 100 - (guess_count * 10)   
-    # player.update(score: x)
-    # binding.pry   
+ #      binding.pry
+       end 
     end
     # x = 100 - (guess_count * 10)   
     # player.update(score: x)

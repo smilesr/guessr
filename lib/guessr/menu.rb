@@ -3,6 +3,7 @@ module Guessr
     def initialize
       @player = nil
       @game = nil
+      @playerall = nil
     end
 
     def choose_player
@@ -25,6 +26,32 @@ module Guessr
       # end
       # @player = Player.find(result.to_i)
     end
+
+    def display_scoreboard
+      puts "Would you like to see current scoreboard (1) yes or (2) no:"
+      result = gets.chomp
+      until result =~ /^[12]$/
+        puts "please type either (1) for yes or (2) for no:"
+        result = gets.chomp
+      end
+      scoreboard
+    end
+
+    def scoreboard
+      Player.all.order(score: :desc).each do |x|
+        puts "#{x.name} ... #{x.score}"
+      end
+      # @playerall = Player.all
+      # playerx = @playerall.to_a
+      # puts "#{playerx[1]}"
+      # (1..3).each |x|
+      #   puts @playerall[x]
+      # end
+
+   #binding.pry
+    end
+  #    puts " this is the record: #{@playerall}" 
+
 
     def choose_game
       puts "Start a new game (1) or resume an existing game (2)?"
@@ -53,6 +80,7 @@ module Guessr
     def run
       welcome
       choose_player
+      display_scoreboard
       while play_again?
         choose_game
         @game.play
